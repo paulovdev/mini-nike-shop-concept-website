@@ -15,7 +15,7 @@ const Menu = ({ setMenuModal, menuModal }) => {
   ];
 
   return (
-    <div className="fixed w-screen h-screen flex items-center justify-between inset-0 z-100">
+    <div className="fixed w-screen h-[100dvh] flex items-center justify-between inset-0 z-100">
       <motion.div
         className="relative size-full flex-[1.5] bg-s z-50 select-none flex flex-col p-5 max-h-screen overflow-hidden max-lg:flex-[3]"
         variants={menuAnimation}

@@ -21,7 +21,7 @@ const Cart = ({ setCartModal, cart, cartModal, setCart }) => {
 
   return (
     <div
-      className="fixed w-screen h-screen inset-0 flex items-center justify-between z-100"
+      className="fixed w-screen h-[100dvh] inset-0 flex items-center justify-between z-100"
       key={cartModal}
     >
       <div className="relative size-full flex-[1] max-ds:hidden"></div>
