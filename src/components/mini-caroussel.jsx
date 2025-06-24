@@ -4,8 +4,9 @@ import {
 } from "react-icons/md";
 
 import Image from "next/image";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useDragControls } from "framer-motion";
 import { clipAnimation } from "@/anim/anim";
+import { useRef, useState } from "react";
 
 const MiniCaroussel = ({
   selectedShoes,
@@ -14,6 +15,36 @@ const MiniCaroussel = ({
   selectedFilter,
 }) => {
   if (!filteredData || !filteredData[selectedShoes]) return null;
+
+  const controls = useDragControls();
+  const ref = useRef();
+
+  const handleDragEnd = (event, info) => {
+    const offset = info.offset.x;
+    const velocity = info.velocity.x;
+
+    if (offset < -50 || velocity < -500) {
+      if (selectedShoes < filteredData.length - 1) {
+        setSelectedShoes(selectedShoes + 1);
+      }
+    } else if (offset > 50 || velocity > 500) {
+      if (selectedShoes > 0) {
+        setSelectedShoes(selectedShoes - 1);
+      }
+    }
+  };
+
+  const wrapperAnimation = {
+    initial: { opacity: 0 },
+    animate: {
+      opacity: 1,
+      transition: { duration: 0.75, ease: [0.76, 0, 0.24, 1] },
+    },
+    exit: {
+      opacity: 0,
+      transition: { duration: 0.75, ease: [0.76, 0, 0.24, 1] },
+    },
+  };
 
   return (
     <>
@@ -28,30 +59,38 @@ const MiniCaroussel = ({
               if (selectedShoes > 0) setSelectedShoes(selectedShoes - 1);
             }}
           />
-
           <AnimatePresence mode="wait">
-            <div
+            <motion.div
               className="flex items-center justify-center"
               key={`${selectedFilter.category}-${selectedFilter.subcategory}-${selectedShoes}`}
+              ref={ref}
+              variants={wrapperAnimation}
+              initial="initial"
+              animate="animate"
+              exit="exit"
             >
               <motion.figure
-                className="w-[250px] h-[150px] select-none bg-transparent z-20"
+                className="w-[250px] h-[150px] select-none z-20"
                 variants={clipAnimation}
                 initial="initial"
                 animate="animate"
                 exit="exit"
+                drag="x"
+                dragControls={controls}
+                dragConstraints={ref}
+                onDragEnd={handleDragEnd}
               >
                 <Image
                   src={filteredData[selectedShoes].img}
                   width={500}
                   height={590}
                   alt=""
-                  className="object-cover  pointer-events-none"
+                  className="object-cover pointer-events-none"
                 />
               </motion.figure>
-              <div className="absolute right-1/3 w-[100px] h-[30px] bg-f blur-[125px] z-10"></div>
-            </div>
+            </motion.div>
           </AnimatePresence>
+
           <MdOutlineKeyboardArrowRight
             size={38}
             className={`absolute right-8 max-ds:right-5 ${

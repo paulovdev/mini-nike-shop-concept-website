@@ -26,7 +26,6 @@ const ShoesPhotosDetail = ({ filteredData, selectedShoes, selectedFilter }) => {
               initial="initial"
               animate="animate"
               exit="exit"
-              custom={0.8}
             >
               <Image
                 src={item}
