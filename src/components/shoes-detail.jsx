@@ -36,8 +36,6 @@ const ShoesDetail = ({
   };
 
   const sizes = [
-    "M 6 / W 7.5",
-    "M 6.5 / W 8",
     "M 7 / W 8.5",
     "M 7.5 / W 9",
     "M 8 / W 9.5",
@@ -158,6 +156,20 @@ const ShoesDetail = ({
                 {selected.price}
               </motion.p>
             </div>
+
+            <div className="my-4 w-full h-0.5 bg-bb"></div>
+           <div className="mb-8 h-fit overflow-hidden">
+            <motion.p
+              className="text-[12px] text-t/75 font-azeret uppercase"
+              variants={slideUpWExitAnimation}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              custom={0.05}
+            >
+             Select size
+            </motion.p>
+          </div>
 
             <div className="mb-8 w-full grid grid-cols-4 gap-2 max-ds:grid-cols-2 max-lg:grid-cols-3">
               {sizes.map((size, i) => {
