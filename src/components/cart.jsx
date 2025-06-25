@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { cartAnimation, slideUpAnimation } from "@/anim/anim";
 import TextSlide from "./text-slide";
 
-const Cart = ({ setCartModal, cart, cartModal, setCart}) => {
+const Cart = ({ setCartModal, cart, cartModal, setCart }) => {
   const getCartTotal = () => {
     return cart
       .reduce((acc, item) => {
@@ -88,7 +88,10 @@ const Cart = ({ setCartModal, cart, cartModal, setCart}) => {
                       <div className="flex items-center">
                         <p className="text-t text-[12px] font-azeret uppercase">
                           {item.price}
-                        </p>{" "}
+                        </p>
+                        <span className="mx-2 text-t text-[12px] font-azeret uppercase">
+                          •
+                        </span>
                         <p className="text-t text-[12px] font-azeret uppercase">
                           {item.size}
                         </p>

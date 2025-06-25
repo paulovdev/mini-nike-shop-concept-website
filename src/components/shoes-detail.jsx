@@ -35,8 +35,6 @@ const ShoesDetail = ({
     }
   };
 
-  console.log(selectedSize);
-
   const sizes = [
     "M 6 / W 7.5",
     "M 6.5 / W 8",
@@ -166,7 +164,7 @@ const ShoesDetail = ({
                 const isActive = selectedSize[selected.id] === size;
                 return (
                   <div
-                    className="h-[40px] overflow-hidden cursor-default select-none"
+                    className="h-fit overflow-hidden cursor-default select-none"
                     onClick={() => {
                       setSelectedSize((prev) => ({
                         ...prev,
@@ -176,7 +174,7 @@ const ShoesDetail = ({
                   >
                     <motion.div
                       key={i}
-                      className={`border border-bb w-full h-[40px] flex items-center justify-center ${
+                      className={`border border-bb w-full h-fit py-3 flex items-center justify-center ${
                         isActive ? "bg-f" : "bg-s"
                       } transition-all duration-200 `}
                       variants={slideUpNoOpacityAnimation}
@@ -186,7 +184,7 @@ const ShoesDetail = ({
                       custom={i}
                     >
                       <p
-                        className={`text-[12px]  font-medium font-azeret uppercase  ${
+                        className={`text-[12px] font-medium font-azeret uppercase  ${
                           isActive ? "text-p" : "text-f"
                         }  transition-all duration-200`}
                       >
@@ -209,7 +207,7 @@ const ShoesDetail = ({
               >
                 <div
                   className={`w-full h-[60px] px-6 py-2 bg-f border flex items-center justify-center gap-2 group hover:bg-p hover:border-bb transition-all duration-200 ${
-                    !selectedSize[selected.id] || existingIndex !== -1
+                    existingIndex !== -1
                       ? "pointer-events-none"
                       : "pointer-events-auto"
                   }`}
@@ -220,9 +218,7 @@ const ShoesDetail = ({
                     className="text-p group-hover:text-f transition-all duration-200"
                   />
                   <p className="text-p text-[12px] font-medium font-azeret uppercase group-hover:text-f transition-all duration-200">
-                    {!selectedSize[selected.id] || existingIndex !== -1
-                      ? "On the cart"
-                      : "Add to Cart"}
+                    {existingIndex !== -1 ? "On the cart" : "Add to Cart"}
                   </p>
                 </div>
               </motion.div>

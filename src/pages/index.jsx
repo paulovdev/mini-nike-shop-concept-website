@@ -16,6 +16,7 @@ import Menu from "@/components/menu";
 
 const Home = () => {
   const [selectedShoes, setSelectedShoes] = useState(0);
+
   const [cartModal, setCartModal] = useState(false);
   const [menuModal, setMenuModal] = useState(false);
   const [cart, setCart] = useState([]);
@@ -30,6 +31,7 @@ const Home = () => {
   useEffect(() => {
     setSelectedShoes(0);
   }, [selectedFilter]);
+
 
   return (
     <>
@@ -104,6 +106,7 @@ const Home = () => {
               setCart={setCart}
               filteredData={filteredData}
               selectedFilter={selectedFilter}
+         
             />
           </div>
         </div>
